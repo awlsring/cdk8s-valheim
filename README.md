@@ -1,16 +1,16 @@
 # CDK8s Valheim
 
-This is a [CDK8s](https://cdk8s.io/) project that defines a Kubernetes deployment for [Valheim](https://www.valheimgame.com/) using the lloesche/valheim-server[https://github.com/lloesche/valheim-server-docker] image.
+This is a [CDK8s](https://cdk8s.io/) project that defines a Kubernetes deployment for [Valheim](https://www.valheimgame.com/) using the [lloesche/valheim-server](https://github.com/lloesche/valheim-server-docker) image.
 
 ## Use
 
-A default deployment can be created by running:
+A default deployment can be created with:
 
 ```typescript
 new ValheimChart(app, 'valheim')
 ```
 
-Default deployment will produce a server image with all default [environment variables](https://github.com/lloesche/valheim-server-docker#environment-variables). The container will request resources for the ames minimum recommended specs of 2 CPU and 4GB of memory.
+Default deployment will produce a server configured with all default [environment variables](https://github.com/lloesche/valheim-server-docker#environment-variables). The container will request resources for the games minimum recommended specs of 2 CPU and 4GB of memory.
 
 Settings can be customized by passing in a `ValheimChartProps` object. This will allow you to configure all supported environment customizations and container configurations
 
