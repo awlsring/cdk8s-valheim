@@ -1,8 +1,9 @@
 {
-  "name": "cdk8s-valheim",
+  "name": "@awlsring/cdk8s-valheim",
+  "description": "A package that vends a Valheim server chart.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattcanemail/cdk8s-valheim.git"
+    "url": "https://github.com/awlsring/cdk8s-valheim.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -16,7 +17,9 @@
     "eslint": "npx projen eslint",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
+    "package:dotnet": "npx projen package:dotnet",
     "package:js": "npx projen package:js",
+    "package:python": "npx projen package:python",
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
     "pre-compile": "npx projen pre-compile",
@@ -34,12 +37,16 @@
     "organization": false
   },
   "devDependencies": {
+    "@actions/core": "^1.1.0",
+    "@awlsring/projen-commons": "^0.0.70",
     "@types/jest": "^27",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "cdk8s": "1.4.10",
-    "constructs": "3.3.196",
+    "cdk8s": "2.7.36",
+    "cdk8s-plus-26": "2.2.2",
+    "constructs": "10.1.281",
+    "dot-prop": "^5.2.0",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^3.5.3",
@@ -50,22 +57,32 @@
     "jsii-diff": "^1.78.1",
     "jsii-docgen": "^7.1.29",
     "jsii-pacmak": "^1.78.1",
-    "json-schema": "^0.4.0",
     "npm-check-updates": "^16",
     "projen": "^0.68.11",
     "standard-version": "^9",
     "ts-jest": "^27",
-    "typescript": "^5.0.2"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "cdk8s": "^1.4.10",
-    "constructs": "^3.3.196"
+    "cdk8s": "^2.7.36",
+    "cdk8s-plus-26": "2.2.2",
+    "constructs": "^10.1.281"
+  },
+  "dependencies": {
+    "constructs": "^10.1.281"
   },
   "keywords": [
-    "cdk"
+    "backend",
+    "cdk",
+    "cdktf",
+    "proxmox"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [
@@ -111,7 +128,16 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "python": {
+        "distName": "cdk8s-valheim",
+        "module": "cdk8s_valheim"
+      },
+      "dotnet": {
+        "namespace": "Awlsring.Cdk8sValheim",
+        "packageId": "Awlsring.Cdk8sValheim"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"

@@ -96,7 +96,7 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "node .projenrc.js"
+          "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
         }
       ]
     },
@@ -126,7 +126,25 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+        }
+      ]
+    },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
         }
       ]
     },
@@ -145,6 +163,21 @@
       "steps": [
         {
           "spawn": "package:js"
+        },
+        {
+          "spawn": "package:python"
+        },
+        {
+          "spawn": "package:dotnet"
+        }
+      ]
+    },
+    "package:dotnet": {
+      "name": "package:dotnet",
+      "description": "Create dotnet language bindings",
+      "steps": [
+        {
+          "exec": "jsii-pacmak -v --target dotnet"
         }
       ]
     },
@@ -154,6 +187,15 @@
       "steps": [
         {
           "exec": "jsii-pacmak -v --target js"
+        }
+      ]
+    },
+    "package:python": {
+      "name": "package:python",
+      "description": "Create python language bindings",
+      "steps": [
+        {
+          "exec": "jsii-pacmak -v --target python"
         }
       ]
     },
@@ -247,19 +289,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='cdk8s,constructs'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='cdk8s-plus-26,cdk8s,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='cdk8s,constructs'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='cdk8s-plus-26,cdk8s,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='cdk8s,constructs'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='cdk8s-plus-26,cdk8s,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='cdk8s,constructs'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='cdk8s-plus-26,cdk8s,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='cdk8s,constructs'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='cdk8s-plus-26,cdk8s,constructs'"
         },
         {
           "exec": "yarn install --check-files"
