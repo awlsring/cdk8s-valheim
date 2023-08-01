@@ -307,7 +307,7 @@
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade"
+          "exec": "yarn upgrade @actions/core @awlsring/projen-commons @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser cdk8s-plus-26 cdk8s constructs dot-prop eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii npm-check-updates projen standard-version ts-jest ts-node typescript cdk8s-plus-26 cdk8s constructs constructs"
         },
         {
           "exec": "npx projen"
